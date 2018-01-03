@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FarmOn</string>
+    <string name="permission_required_title">Permission Required</string>
+    <string name="permission_required">Please accept all permissions to proceed the app.</string>
+</resources>
