@@ -1,0 +1,11 @@
+= FarmOn
+Never miss that harvest season you've been craving for, ever again
+
+Made for http://mage.telematics.its.ac.id/[MAGE 2018] (Multimedia and Game Event) held by Computer Engineering Department of ITS Surabaya.
+
+== About
+
+FarmOn is a marketplace portal for urban farmers to sell their products easily. The premise of this app is to notify customers about the available products on season.
+
+This is a prototype application written in Kotlin (the new official language of Android) for Android platform.
+
