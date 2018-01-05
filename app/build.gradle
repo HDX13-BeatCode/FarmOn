@@ -40,7 +40,7 @@ dependencies {
     //other support libraries
     compile "org.jetbrains.anko:anko:$anko_version"
     implementation "com.github.bumptech.glide:glide:3.8.0"
-    annotationProcessor "com.github.bumptech.glide:compiler:3.8.0"
+    // annotationProcessor "com.github.bumptech.glide:compiler:3.8.0"
     compile "com.android.volley:volley:1.1.0"
     compile "gun0912.ted:tedbottompicker:1.1.0"
 }

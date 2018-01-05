@@ -7,7 +7,9 @@ import android.content.Context
  * Created by hdx13 on 03/01/18.
  */
 class SettingsManager {
+
     companion object {
+
         operator fun set(context: Context, pname: String, str: String) {
             val sharedPref = android.preference.PreferenceManager.getDefaultSharedPreferences(context)
             val editor = sharedPref.edit()
@@ -15,10 +17,10 @@ class SettingsManager {
             editor.apply()
         }
 
-        operator fun set(context: Context, pname: String, str: Boolean) {
+        operator fun set(context: Context, pname: String, bool: Boolean) {
             val sharedPref = android.preference.PreferenceManager.getDefaultSharedPreferences(context)
             val editor = sharedPref.edit()
-            editor.putBoolean(pname, str)
+            editor.putBoolean(pname, bool)
             editor.apply()
         }
 
@@ -33,10 +35,21 @@ class SettingsManager {
             return sharedPref.getBoolean(pname, false)
         }
 
-        fun clear(context: Context) {
+        /*
+         * ClearAll acts to remove all settings from the app.
+         * Use with caution!
+         */
+        fun clearAll(context: Context) {
             val sharedPref = android.preference.PreferenceManager.getDefaultSharedPreferences(context)
             val editor = sharedPref.edit()
             editor.clear()
+            editor.apply()
+        }
+
+        fun remove(context: Context, pname: String) {
+            val sharedPref = android.preference.PreferenceManager.getDefaultSharedPreferences(context)
+            val editor = sharedPref.edit()
+            editor.remove(pname)
             editor.apply()
         }
     }

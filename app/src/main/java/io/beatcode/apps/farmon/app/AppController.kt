@@ -20,6 +20,7 @@ class AppController : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        instance = this
         // Until we have locale function, this remains dead
         // Locale.setDefault(Locale("in", "ID"))
     }
@@ -43,6 +44,7 @@ class AppController : Application() {
 
     companion object {
         const val TAG: String = "FarmOn"
-        internal val instance = AppController()
+        private var instance: AppController? = null
+
     }
 }

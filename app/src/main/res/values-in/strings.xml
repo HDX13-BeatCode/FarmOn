@@ -3,4 +3,12 @@
     <string name="app_name">FarmOn</string>
     <string name="permission_required_title">Izin Diperlukan</string>
     <string name="permission_required">Mohon izinkan aplikasi ini untuk melanjutkan.</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="login">Masuk</string>
+    <string name="sign_up">Daftar</string>
+    <string name="user_email">Nama akun/email</string>
+    <string name="login_empty">Mohon masukkan data ke dalam form.</string>
+    <string name="logging_in">Memproses login...</string>
+    <string name="login_wrong">Nama akun, email, atau kata sandi salah.</string>
 </resources>

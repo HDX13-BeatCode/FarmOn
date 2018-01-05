@@ -2,4 +2,13 @@
     <string name="app_name">FarmOn</string>
     <string name="permission_required_title">Permission Required</string>
     <string name="permission_required">Please accept all permissions to proceed the app.</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="user_email">Username/email</string>
+    <string name="login_empty">Please fill the login details first.</string>
+    <string name="logging_in">Logging in...</string>
+    <string name="login_wrong">Incorrect username, email or password.</string>
+    <string name="logout">Logout</string>
 </resources>
