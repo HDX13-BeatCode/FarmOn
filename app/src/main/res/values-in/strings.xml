@@ -11,4 +11,5 @@
     <string name="login_empty">Mohon masukkan data ke dalam form.</string>
     <string name="logging_in">Memproses login...</string>
     <string name="login_wrong">Nama akun, email, atau kata sandi salah.</string>
+    <string name="logout">Keluar</string>
 </resources>

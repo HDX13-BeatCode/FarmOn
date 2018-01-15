@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:name=".app.AppController"
         android:allowBackup="true"
@@ -23,8 +28,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.activity.MainActivity" />
-        <activity android:name=".app.activity.LoginActivity"></activity>
+        <activity
+            android:name=".app.activity.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".app.activity.LoginActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:parentActivityName=".app.activity.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.beatcode.apps.farmon.app.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".app.activity.SignUpActivity"
+            android:label="@string/title_activity_sign_up"
+            android:parentActivityName=".app.activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.beatcode.apps.farmon.app.activity.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

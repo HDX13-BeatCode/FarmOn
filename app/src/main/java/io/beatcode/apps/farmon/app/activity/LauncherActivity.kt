@@ -1,13 +1,11 @@
 package io.beatcode.apps.farmon.app.activity
 
-import android.Manifest
+import android.Manifest.permission.*
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import io.beatcode.apps.farmon.R
-import io.beatcode.apps.farmon.data.LOGGED_IN
-import io.beatcode.apps.farmon.util.SettingsManager
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.startActivity
 
@@ -20,10 +18,10 @@ class LauncherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launcher)
 
-
-
+        // Android 6.0 has runtime permissions,
+        // where user must agree with
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE), 1)
+            requestPermissions(arrayOf(READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, CAMERA, CALL_PHONE), 1)
         else proceed()
     }
 
@@ -35,15 +33,8 @@ class LauncherActivity : AppCompatActivity() {
 
     private fun proceed() {
         Handler().postDelayed({
-            if (SettingsManager.getBoolean(applicationContext, LOGGED_IN)) {
-                // if logged in, load MainActivity
                 startActivity<MainActivity>()
                 finish()
-            } else {
-                // if not, send to LoginActivity
-                startActivity<LoginActivity>()
-                finish()
-            }
         }, waitTime)
     }
 

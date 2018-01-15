@@ -10,14 +10,14 @@ class SettingsManager {
 
     companion object {
 
-        operator fun set(context: Context, pname: String, str: String) {
+        fun setValue(context: Context, pname: String, str: String) {
             val sharedPref = android.preference.PreferenceManager.getDefaultSharedPreferences(context)
             val editor = sharedPref.edit()
             editor.putString(pname, str)
             editor.apply()
         }
 
-        operator fun set(context: Context, pname: String, bool: Boolean) {
+        fun setValue(context: Context, pname: String, bool: Boolean) {
             val sharedPref = android.preference.PreferenceManager.getDefaultSharedPreferences(context)
             val editor = sharedPref.edit()
             editor.putBoolean(pname, bool)

@@ -1,50 +1,44 @@
 package io.beatcode.apps.farmon.app
 
 import android.app.Application
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 
 /**
  * Created by hdx13 on 03/01/18.
+ * This is where all the magic of the app itself comes from
+ * Basically a singleton
  */
 
 class AppController : Application() {
 
     private var reqQ: RequestQueue? = null
+
+    public val requestQueue: RequestQueue
         get() {
             if (reqQ == null) reqQ = Volley.newRequestQueue(applicationContext)
-            return reqQ
+            return reqQ!!
         }
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
+        me = this
         // Until we have locale function, this remains dead
         // Locale.setDefault(Locale("in", "ID"))
     }
 
     public fun <T> addReqQ(req: Request<T>) {
         req.tag = TAG
-
-        // gotta trap it on try block
-        // just in case if the reqQ is null
-        try {
-            this.reqQ!!.add(req)
-        } catch (npe: NullPointerException) {
-            // gotcha!
-            Log.e(TAG, "Request queue is gone", npe)
-        } catch (e: Exception) {
-            // other problems
-            Log.e(TAG, "An error occurred", e)
-        }
-
+        requestQueue.add(req)
     }
 
     companion object {
         const val TAG: String = "FarmOn"
-        private var instance: AppController? = null
 
+        private var me: AppController? = null
+
+        public val instance: AppController
+            get() = me!!
     }
 }
