@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         syncLoginState()
     }
 
-    fun syncLoginState() {
+    private fun syncLoginState() {
         if (SettingsManager.getBoolean(applicationContext, LOGGED_IN)) {
             txtId.text = "Not logged in"
             btnLog.text = "Sign in"

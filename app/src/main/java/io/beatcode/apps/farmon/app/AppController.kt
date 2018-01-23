@@ -4,6 +4,11 @@ import android.app.Application
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
+import io.beatcode.apps.farmon.data.REALM_NAME
+import io.realm.Realm
+import io.realm.RealmConfiguration
+
+
 
 /**
  * Created by hdx13 on 03/01/18.
@@ -23,14 +28,27 @@ class AppController : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        me = this
+
+        // preparing Realm
+        Realm.init(this)
+        val realmCfg = RealmConfiguration.Builder()
+                .name(REALM_NAME)
+                .schemaVersion(0)
+                .deleteRealmIfMigrationNeeded()
+                .build()
+        Realm.setDefaultConfiguration(realmCfg)
+
         // Until we have locale function, this remains dead
         // Locale.setDefault(Locale("in", "ID"))
     }
 
-    public fun <T> addReqQ(req: Request<T>) {
+    public fun <T> addRequestQueue(req: Request<T>) {
         req.tag = TAG
         requestQueue.add(req)
+    }
+
+    init {
+        me = this
     }
 
     companion object {

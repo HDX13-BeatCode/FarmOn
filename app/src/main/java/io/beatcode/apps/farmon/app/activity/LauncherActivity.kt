@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import io.beatcode.apps.farmon.R
+import io.beatcode.apps.farmon.data.LOGGED_IN
+import io.beatcode.apps.farmon.util.SettingsManager
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.startActivity
 
@@ -17,6 +19,7 @@ class LauncherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launcher)
+        setTheme(R.style.AppTheme_NoActionBar)
 
         // Android 6.0 has runtime permissions,
         // where user must agree with
@@ -33,8 +36,10 @@ class LauncherActivity : AppCompatActivity() {
 
     private fun proceed() {
         Handler().postDelayed({
+            if(SettingsManager.getBoolean(applicationContext, LOGGED_IN))
                 startActivity<MainActivity>()
-                finish()
+            else startActivity<LoginActivity>()
+            finish()
         }, waitTime)
     }
 
@@ -43,4 +48,5 @@ class LauncherActivity : AppCompatActivity() {
             finish()
         }.show()
     }
+
 }
