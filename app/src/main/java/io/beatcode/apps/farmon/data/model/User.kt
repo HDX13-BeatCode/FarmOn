@@ -4,8 +4,6 @@ import io.realm.RealmObject
 import io.realm.annotations.Index
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.RealmClass
-import java.util.*
-import java.time.LocalDateTime
 
 /**
  * Created by hdx13 on 18/01/18.
@@ -20,6 +18,6 @@ open class User(
         var address: String = "",
         var region: Region? = null,
         var district: District? = null,
-        var phoneNumber: String = "",
-        var joinedTime: LocalDateTime = LocalDateTime.now()
+        var phoneNumber: String = ""
+//        var joinedTime: LocalDateTime = LocalDateTime.now()
 ): RealmObject()

@@ -12,4 +12,6 @@
     <string name="logging_in">Memproses login...</string>
     <string name="login_wrong">Nama akun, email, atau kata sandi salah.</string>
     <string name="logout">Keluar</string>
+    <string name="tab_main">Pasar</string>
+    <string name="tab_chat">Obrolan</string>
 </resources>

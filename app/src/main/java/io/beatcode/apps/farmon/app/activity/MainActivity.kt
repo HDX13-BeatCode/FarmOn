@@ -2,68 +2,67 @@ package io.beatcode.apps.farmon.app.activity
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import io.beatcode.apps.farmon.R
-import io.beatcode.apps.farmon.data.LOGGED_IN
-import io.beatcode.apps.farmon.data.USER_EMAIL
-import io.beatcode.apps.farmon.util.SettingsManager
+import io.beatcode.apps.farmon.app.adapter.MainPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.content_main.*
-import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
+
+        // preparing the app bars
+        setSupportActionBar(toolBar)
+
+        // getting ready for the pages
+        val pagerAdapter = MainPagerAdapter(
+                supportFragmentManager,
+                resources.getString(R.string.tab_main),
+                resources.getString(R.string.tab_chat)
+        )
+        pager.adapter = pagerAdapter
+
+        // activating tabs
+        tabLayout.setupWithViewPager(pager)
+
+//        fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                    .setAction("Action", null).show()
+//        }
 
         val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
+                this, mainDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        mainDrawer.addDrawerListener(toggle)
+
+
+        navView.setNavigationItemSelectedListener(this)
+
+
+        // syncs everything
+        syncLoginState()
         toggle.syncState()
-
-        nav_view.setNavigationItemSelectedListener(this)
-
-        btnLog.setOnClickListener {
-            if (SettingsManager.getBoolean(applicationContext, LOGGED_IN))
-                startActivity<LoginActivity>()
-            else {
-                SettingsManager.setValue(applicationContext, LOGGED_IN, false)
-                syncLoginState()
-            }
-        }
 
     }
 
     override fun onResume() {
-        super.onResume()
-        syncLoginState()
+        super.onResume(); syncLoginState()
     }
 
     private fun syncLoginState() {
-        if (SettingsManager.getBoolean(applicationContext, LOGGED_IN)) {
-            txtId.text = "Not logged in"
-            btnLog.text = "Sign in"
-        } else {
-            txtId.text = "Welcome, ${SettingsManager.getString((applicationContext), USER_EMAIL)}!"
-            btnLog.text = "Sign out"
-        }
+//        txtUsername.text = SettingsManager.getString(applicationContext, USER_NAME)
+//        txtUserEmail.text = SettingsManager.getString(applicationContext, USER_EMAIL)
     }
 
     override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
+        if (mainDrawer.isDrawerOpen(GravityCompat.START)) {
+            mainDrawer.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
@@ -108,7 +107,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
-        drawer_layout.closeDrawer(GravityCompat.START)
+        mainDrawer.closeDrawer(GravityCompat.START)
         return true
     }
 }

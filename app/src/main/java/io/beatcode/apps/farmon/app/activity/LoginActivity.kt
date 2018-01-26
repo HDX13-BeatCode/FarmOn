@@ -61,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
      * errors are presented and no actual login attempt is made.
      */
     private fun attemptLogin() {
+        // prevents mAuthTask to be doubled
         if (mAuthTask != null) return
 
         // Reset errors.
@@ -174,6 +175,7 @@ class LoginActivity : AppCompatActivity() {
             if (success!!) {
                 SettingsManager.setValue(applicationContext, LOGGED_IN, true)
                 SettingsManager.setValue(applicationContext, USER_EMAIL, mEmail)
+                startActivity<MainActivity>()
                 finish()
             } else {
                 password.error = getString(R.string.error_incorrect_password)

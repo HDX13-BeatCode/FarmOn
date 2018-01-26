@@ -6,9 +6,7 @@ import android.content.Context
 /**
  * Created by hdx13 on 03/01/18.
  */
-class SettingsManager {
-
-    companion object {
+object SettingsManager {
 
         fun setValue(context: Context, pname: String, str: String) {
             val sharedPref = android.preference.PreferenceManager.getDefaultSharedPreferences(context)
@@ -52,7 +50,5 @@ class SettingsManager {
             editor.remove(pname)
             editor.apply()
         }
-    }
-
 
 }
