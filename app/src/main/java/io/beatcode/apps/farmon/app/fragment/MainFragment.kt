@@ -40,6 +40,7 @@ class MainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         mainMenu.layoutManager = LinearLayoutManager(this.context)
 
         mainMenu.adapter = GoodsAdapter(itemList) {
