@@ -3,7 +3,7 @@ package io.beatcode.apps.farmon.app.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import io.beatcode.apps.farmon.app.fragment.ChatFragment
+import io.beatcode.apps.farmon.app.fragment.ChatsFragment
 import io.beatcode.apps.farmon.app.fragment.MainFragment
 
 /**
@@ -15,8 +15,8 @@ class MainPagerAdapter(fm: FragmentManager, private val page1: String, private v
 
     override fun getItem(position: Int): Fragment? {
         return when (position) {
-            0 -> MainFragment()
-            1 -> ChatFragment()
+            0 -> MainFragment.newInstance("what", "ever")
+            1 -> ChatsFragment.newInstance(1)
             else -> null
         }
     }

@@ -1,5 +1,6 @@
 package io.beatcode.apps.farmon.app.activity
 
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -9,10 +10,23 @@ import android.view.Menu
 import android.view.MenuItem
 import io.beatcode.apps.farmon.R
 import io.beatcode.apps.farmon.app.adapter.MainPagerAdapter
+import io.beatcode.apps.farmon.app.fragment.ChatsFragment
+import io.beatcode.apps.farmon.app.fragment.MainFragment
+import io.beatcode.apps.farmon.data.model.Chats
+import io.beatcode.apps.farmon.util.OnFragmentInteractionListener
+import io.beatcode.apps.farmon.util.OnListFragmentInteractionListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+        OnFragmentInteractionListener, OnListFragmentInteractionListener {
+    override fun onFragmentInteraction(uri: Uri) {
+
+    }
+
+    override fun onListFragmentInteraction(item: Chats) {
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
