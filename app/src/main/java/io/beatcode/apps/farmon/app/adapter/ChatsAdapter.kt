@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import io.beatcode.apps.farmon.R
-import io.beatcode.apps.farmon.app.fragment.dummy.DummyContent
+import io.beatcode.apps.farmon.data.model.DummyContent
 import io.beatcode.apps.farmon.data.model.Chats
 import io.beatcode.apps.farmon.util.OnListFragmentInteractionListener
 import io.beatcode.apps.farmon.util.inflate
@@ -16,12 +16,12 @@ import io.beatcode.apps.farmon.util.inflate
  * TODO: Replace the implementation with code for your data type.
  */
 class ChatsAdapter(
-        private val items: List<Chats> = DummyContent.ITEMS,
-        var action: OnListFragmentInteractionListener? = null)
+        private val items: List<Chats> = DummyContent.chatItems,
+        var action: OnListFragmentInteractionListener<Chats>? = null)
     : RecyclerView.Adapter<ChatsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
-        = ViewHolder(parent.inflate(R.layout.fragment_chats))
+        = ViewHolder(parent.inflate(R.layout.item_chats))
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
@@ -31,7 +31,7 @@ class ChatsAdapter(
         return items.size
     }
 
-    fun setListener(action: OnListFragmentInteractionListener){
+    fun setListener(action: OnListFragmentInteractionListener<Chats>){
         this.action = action
     }
 
@@ -42,7 +42,7 @@ class ChatsAdapter(
 
         fun bind(item: Chats) = with(mView) {
             userTxt.text = item.user2Id.toString()
-            descTxt.text = item.chatContents[item.chatContents.lastIndex].content
+            descTxt.text = item.chatDetails[item.chatDetails.lastIndex].content
 
             setOnClickListener{
                 action?.onListFragmentInteraction(item)

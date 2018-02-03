@@ -1,5 +1,6 @@
 package io.beatcode.apps.farmon.app.activity
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -10,8 +11,6 @@ import android.view.Menu
 import android.view.MenuItem
 import io.beatcode.apps.farmon.R
 import io.beatcode.apps.farmon.app.adapter.MainPagerAdapter
-import io.beatcode.apps.farmon.app.fragment.ChatsFragment
-import io.beatcode.apps.farmon.app.fragment.MainFragment
 import io.beatcode.apps.farmon.data.model.Chats
 import io.beatcode.apps.farmon.util.OnFragmentInteractionListener
 import io.beatcode.apps.farmon.util.OnListFragmentInteractionListener
@@ -20,13 +19,20 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
         OnFragmentInteractionListener, OnListFragmentInteractionListener {
+
+    override fun <T> onListFragmentInteraction(item: T) {
+        if (item is Chats){
+            val newScene = Intent()
+            newScene.putExtra("hat", item.id)
+            startActivity(newScene)
+        }
+    }
+
     override fun onFragmentInteraction(uri: Uri) {
 
     }
 
-    override fun onListFragmentInteraction(item: Chats) {
 
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +56,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                    .setAction("Action", null).show()
 //        }
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val toggle = ActionBarDrawerToggle(
                 this, mainDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -92,9 +100,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            R.id.action_settings -> true
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
