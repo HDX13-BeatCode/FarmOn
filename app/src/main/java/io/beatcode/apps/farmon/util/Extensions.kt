@@ -1,5 +1,6 @@
 package io.beatcode.apps.farmon.util
 
+import android.content.Context
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
@@ -13,3 +14,6 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false):
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 }
 
+fun <T> Context.setOnListFragmentInteractionListener((item: T) -> Unit){
+
+}
