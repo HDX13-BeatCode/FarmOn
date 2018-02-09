@@ -12,7 +12,7 @@ import android.view.ViewGroup
 
 import io.beatcode.apps.farmon.R
 import io.beatcode.apps.farmon.app.adapter.ChatsAdapter
-import io.beatcode.apps.farmon.data.model.DummyContent
+import io.beatcode.apps.farmon.data.DummyContent
 import io.beatcode.apps.farmon.util.OnListFragmentInteractionListener
 
 /**

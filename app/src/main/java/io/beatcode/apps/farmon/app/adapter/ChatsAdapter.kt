@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import io.beatcode.apps.farmon.R
-import io.beatcode.apps.farmon.data.model.DummyContent
+import io.beatcode.apps.farmon.data.DummyContent
 import io.beatcode.apps.farmon.data.model.Chats
 import io.beatcode.apps.farmon.util.OnListFragmentInteractionListener
 import io.beatcode.apps.farmon.util.inflate
@@ -17,7 +17,7 @@ import io.beatcode.apps.farmon.util.inflate
  */
 class ChatsAdapter(
         private val items: List<Chats> = DummyContent.chatItems,
-        var action: OnListFragmentInteractionListener<Chats>? = null)
+        var action: OnListFragmentInteractionListener? = null)
     : RecyclerView.Adapter<ChatsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
@@ -31,7 +31,7 @@ class ChatsAdapter(
         return items.size
     }
 
-    fun setListener(action: OnListFragmentInteractionListener<Chats>){
+    fun setListener(action: OnListFragmentInteractionListener){
         this.action = action
     }
 

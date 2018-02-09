@@ -1,5 +1,7 @@
-package io.beatcode.apps.farmon.data.model
+package io.beatcode.apps.farmon.data
 
+import io.beatcode.apps.farmon.data.model.ChatDetails
+import io.beatcode.apps.farmon.data.model.Chats
 import java.util.ArrayList
 
 /**

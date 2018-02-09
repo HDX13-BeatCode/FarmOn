@@ -5,56 +5,45 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
-import io.beatcode.apps.farmon.app.fragment.ChatDetailsFragment.OnChatDetailsFragmentInteractionListener
-import io.beatcode.apps.farmon.data.model.DummyContent.DummyItem
+import io.beatcode.apps.farmon.R
+import io.beatcode.apps.farmon.data.model.ChatDetails
+import io.beatcode.apps.farmon.util.OnListFragmentInteractionListener
+import io.beatcode.apps.farmon.util.inflate
 
 /**
- * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
- * specified [OnChatDetailsFragmentInteractionListener].
+ * [RecyclerView.Adapter] that can display a [List] of [ChatDetails] and makes a call to the
+ * specified [OnListFragmentInteractionListener].
  * TODO: Replace the implementation with code for your data type.
  */
- class ChatDetailsAdapter(private val mValues:List<DummyItem>, private val mListener: OnChatDetailsFragmentInteractionListener?):RecyclerView.Adapter<ChatDetailsAdapter.ViewHolder>() {
+class ChatDetailsAdapter(
+        private val mValues: List<ChatDetails>,
+        private val mListener: OnListFragmentInteractionListener? = null
+) : RecyclerView.Adapter<ChatDetailsAdapter.ViewHolder>() {
 
-public override fun onCreateViewHolder(parent:ViewGroup, viewType:Int): ViewHolder {
-val view = LayoutInflater.from(parent.getContext())
-.inflate(R.layout.item_chat_details, parent, false)
-return ViewHolder(view)
-}
+    public override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
+        = ViewHolder(parent.inflate(R.layout.item_chat_details))
 
-public override fun onBindViewHolder(holder: ViewHolder, position:Int) {
-holder.mItem = mValues.get(position)
-holder.mIdView.setText(mValues.get(position).id)
-holder.mContentView.setText(mValues.get(position).content)
 
-holder.mView.setOnClickListener(object:View.OnClickListener {
-public override fun onClick(v:View) {
-if (null != mListener)
-{
- // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener!!.onListFragmentInteraction(holder.mItem)
-}
-}
-})
-}
+    public override fun onBindViewHolder(holder: ViewHolder, position: Int)
+        = holder.bind(mValues[position])
 
-public override fun getItemCount():Int {
-return mValues.size
-}
+    public override fun getItemCount(): Int
+        = mValues.size
 
-inner class ViewHolder( val mView:View):RecyclerView.ViewHolder(mView) {
- val mIdView:TextView
- val mContentView:TextView
- var mItem:DummyItem? = null
 
-init{
-mIdView = mView.findViewById(R.id.id) as TextView
-mContentView = mView.findViewById(R.id.content) as TextView
-}
+    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
+        val mIdView: TextView = mView.findViewById(R.id.txtChatDetailsUser) as TextView
+        val mContentView: TextView = mView.findViewById(R.id.txtChatDetailsContent) as TextView
+        var mItem: ChatDetails = ChatDetails(-1, -1, "null")
 
-public override fun toString():String {
-return super.toString() + " '" + mContentView.getText() + "'"
-}
-}
+        fun bind(item: ChatDetails = mItem) = with(this){
+            mIdView.text = item.senderId.toString()
+            mContentView.text = item.content
+
+            mView.setOnClickListener {
+                mListener?.onListFragmentInteraction(item)
+            }
+        }
+
+    }
 }

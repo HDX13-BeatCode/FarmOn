@@ -12,15 +12,15 @@ import android.view.ViewGroup
 
 import io.beatcode.apps.farmon.R
 import io.beatcode.apps.farmon.app.adapter.ChatDetailsAdapter
-import io.beatcode.apps.farmon.data.model.DummyContent
+import io.beatcode.apps.farmon.data.DummyContent
 import io.beatcode.apps.farmon.util.OnListFragmentInteractionListener
 
 /**
  * A fragment representing a list of Items.
  *
  *
- * Activities containing this fragment MUST implement the [OnListFragmentInteractionListener]
- * interface.
+ * Activities containing this fragment MUST implement the OnListFragmentInteractionListener
+ * interface from [Interfaces.kt]
  */
 /**
  * Mandatory empty constructor for the fragment manager to instantiate the
@@ -35,8 +35,8 @@ class ChatDetailsFragment : Fragment() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT)
+        if (arguments != null) {
+            mColumnCount = arguments.getInt(ARG_COLUMN_COUNT)
         }
     }
 
@@ -52,7 +52,7 @@ class ChatDetailsFragment : Fragment() {
             } else {
                 view.layoutManager = GridLayoutManager(context, mColumnCount)
             }
-            view.adapter = ChatDetailsAdapter(DummyContent.chatItems, mListener)
+            view.adapter = ChatDetailsAdapter(DummyContent.chatItems[1].chatDetails, mListener)
         }
         return view
     }

@@ -14,6 +14,6 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false):
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 }
 
-fun <T> Context.setOnListFragmentInteractionListener((item: T) -> Unit){
+inline fun <T> OnListFragmentInteractionListener.setOnListFragmentInteractionListener(action: (item: T) -> Unit){
 
 }
